@@ -31,6 +31,18 @@ Getting up and running is as easy as 1, 2, 3.
 
 Simply run `npm test` and all your tests in the `test/` directory will be run.
 
+##Project structure
+
+- config contains a default.json and production.json application configuration file for things like the database connection strings and other configuration options.
+public is the publicly hosted folder with the homepage
+- src contains all the application source files
+- hooks will contain global hooks
+- middleware contains Express middleware
+- services has a folder for each service. A service has an index.js and a hooks folder for service specific hooks
+- app.js is the main application file which can be imported to test services
+- index.js imports app.js and starts the server on the ports set in the configuration file
+- test contains test files for the app, services and hooks
+
 ## Scaffolding
 
 Feathers has a powerful command line interface. Here are a few things it can do:

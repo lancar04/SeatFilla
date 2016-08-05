@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 3030,
-  "postgres": "postgres://postgres:@localhost:5432/CapstoneProject",
+  "postgres": "postgres://postgres:@localhost:5432/seatfilla",
   "public": "../public/",
   "auth": {
     "idField": "id",
