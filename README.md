@@ -2,7 +2,6 @@
 
 > SeatFilla website by Dale/Richard
 
-## About
 
 ## SeatFilla
 SeatFilla Information here
@@ -54,7 +53,7 @@ For more information on all the things you can do with Feathers visit [docs.feat
 __0.1.0__
 
 - /05/08/16 - Project creation, built dependencies and scaffolding, installed Node.js and npm.
-  /05/08/15 - Set up basic project structure and configurations, connection to PostgresSQL db.
+- /05/08/15 - Set up basic project structure and configurations, connection to PostgresSQL db.
 
 ## License
 
