@@ -1,10 +1,15 @@
 # CapstoneProject
 
-> SeatFilla backend Dale/Richard
+> SeatFilla website by Dale/Richard
 
 ## About
 
+## SeatFilla
+SeatFilla Information here
+
+##Technologies
 This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
+Feathers sits on top of some very powerful javascript frameworks such as Node.js, SocketIO and Express.js. 
 
 ## Getting Started
 
@@ -48,7 +53,8 @@ For more information on all the things you can do with Feathers visit [docs.feat
 
 __0.1.0__
 
-- Initial release
+- /05/08/16 - Project creation, built dependencies and scaffolding, installed Node.js and npm.
+  /05/08/15 - Set up basic project structure and configurations, connection to PostgresSQL db.
 
 ## License
 
