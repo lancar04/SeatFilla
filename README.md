@@ -66,6 +66,8 @@ __0.1.0__
 
 - /05/08/16 - Project creation, built dependencies and scaffolding, installed Node.js and npm.
 - /05/08/15 - Set up basic project structure and configurations, connection to PostgresSQL db.
+- /06/08/15 - Added polymer library component support
+- /06/08/15 - Start developing UI prototypes 
 
 ## License
 
