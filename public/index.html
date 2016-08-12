@@ -2,9 +2,13 @@
 <html>
   <head>
     <title>SeatFilla</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Find cheap flight tickets online">
+    <meta name="keywords" content="Airline,airport,cheap,flight,tracking,delay,seats,ticket,online,purchase,API,fly">
+    <meta name="author" content="SeatFilla">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Jquery -->
+    <!-- Jquery -->
    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap js -->
@@ -27,6 +31,13 @@
     <link rel="import" href="./bower_components/paper-menu/paper-menu.html">
     <link rel="import" href="./bower_components/paper-styles/paper-styles.html">
     <link rel="import" href="./bower_components/app-layout/app-layout.html">
+    <link rel="import" href="./bower_components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="./bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+    <link rel="import" href="./bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
+    <link rel="import" href="./bower_components/iron-pages/iron-pages.html">
+    <link rel="import" href="./bower_components/iron-form-element-behavior/iron-form-element-behavior.html">
+    <link rel="import" href="./bower_components/iron-form/iron-form.html">
+    <link rel="import" href="./bower_components/paper-button/paper-button.html">
 
     <!-- Css -->
     <link rel = "stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.css">
@@ -36,25 +47,61 @@
 
 
   <style is="custom-style">
-      paper-toolbar.red {
-        --paper-toolbar-background: white;
-        --paper-toolbar-color:grey;
-        --paper-toolbar-position:fixed;
+    
+      app-header {
+       background-color: #232323;
+       color:white;
+       max-height:40px;
       }
 
-      paper-header-panel{
-        --paper-toolbar-background-attachment:fixed;
+      paper-tabs{
+        background-color:white;
       }
+
+      .link {
+        color:white;
+        font-size:1em;
+        font-weight:bold;
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+      }
+
+      :root {
+        /* Label and underline color when the input is not focused */
+        --paper-input-container-color: black;
+
+        /* Label and underline color when the input is focused */
+        --paper-input-container-focus-color: black;
+
+        /* Label and underline color when the input is invalid */
+        --paper-input-container-invalid-color: red;
+
+        /* Input foreground color */
+        --paper-input-container-input-color: black;
+}
    </style>
 
     <style>
+  
   .section{
     position:relative;
-    top:30px;
     min-height:100vh;
     min-width:100vw;
     color: #fff;
     display:flex;
+    overflow-x:hidden;
+  }
+
+  .header{
+    position:relative;
+    min-height:80vh;
+    height:80vh;
+    max-height:80vh;
+    color: #fff;
+    display:flex;
+    -webkit-box-shadow: 1px 2px 4px 0px rgba(18,18,18,1);
+    -moz-box-shadow: 1px 2px 4px 0px rgba(18,18,18,1);
+    box-shadow: 1px 2px 4px 0px rgba(18,18,18,1);
   }
 
   .phone{
@@ -95,19 +142,20 @@
   }
 
   #section1bg { 
-      background-image: url('img/globe.jpeg');
+      background-image:url('img/globe.jpeg');
+      
   }
 
   #section2bg {       
-    background-image: url('img/desert.jpeg');
+     
   } 
 
   #section3bg {     
-    background-image: url('img/seats.jpeg');
+  
   }
 
   #section4bg {     
-      background-image: url('img/desert.jpeg');
+
   }
 
   #section5bg { background-color:lightgrey;}
@@ -115,13 +163,16 @@
   .inline{display:inline-block;}
 
   #section_container{
-    max-width:100%;
-    min-width:100%;
+    width:100%;
     overflow-x:hidden;
     margin:auto; 
   }
 
-  .logo{position:relative;top:10px;}
+  .logo{position:relative;}
+  .logo img{
+    position:relative;
+    bottom:10px;
+  }
 
   .scrollable{
     overflow:scroll;
@@ -148,6 +199,11 @@
     top:30px;
   }
 
+  .container80{
+    width:80%;
+    margin:auto;
+  }
+
   .rel{
     position:relative;
   }
@@ -164,6 +220,19 @@
     background-color:#ffa200;
   }
 
+  .merge{
+    style="position:relative;bottom:40px;"
+  }
+
+  .title{
+    font-size:1em;
+    letter-spacing:2px;
+    position:absolute;
+    bottom:10px;
+    left:60px;
+    color:white;
+  }
+
   </style>
 
   <script>
@@ -172,57 +241,118 @@
       console.log('hello world');
     }
 
+  $(document).ready(function () {
+
+     var debug = true;
+     var replaceVideo = () =>{
+        $('#myVideo').remove();
+        $('.header').attr('id','section1bg').fadeIn(500);
+        localStorage.setItem('intro_played',1);
+    }
+
+    if(debug || !localStorage.getItem('intro_played')){
+      $('video').get(0).play();
+    }else{
+      replaceVideo();
+    }
+
+    document.getElementById('myVideo').addEventListener('ended',function(e) {
+        $('#myVideo').fadeOut(1000,function(){
+            replaceVideo();
+        });
+    },false);
+  });
+
+
     </script>
   </head>
-  <body class="fullbleed layout vertical">
+<body class="fullbleed layout vertical">
+<app-drawer-layout force-narrow fullbleed>
+    <app-drawer id="drawer" opened>
+      <app-toolbar>
+        <h2>Navigation</h2>
+      </app-toolbar>
 
+      <paper-menu selected="{{selected}}" attr-for-selected="name">
+        <paper-item name="item">name</paper-item>
+      </paper-menu>
+    </app-drawer>
+    <app-header-layout fullbleed>
 
-<!--Nav start-->
+      <app-header class="main-header" fixed effects="waterfall">
+        <app-toolbar>
+          <paper-icon-button style="position:absolute;top:0px;"icon="menu" drawer-toggle></paper-icon-button>
+          <h2 class="title" >SeatFilla</h2>
+          <paper-tabs style="width:50vw;background-color:#232323;float:right;position:absolute;right:0px;top:0px;padding:10px;font-size:10px;max-height:40px;" selected="{{selected}}">
+          <paper-tab link>
 
-<paper-header-panel class="flex" mode="waterfall">
-<paper-toolbar class="red">
-  <paper-icon-button icon="menu"></paper-icon-button>
-  <div class="title">Seatfilla</div>
-  <paper-input label="Email"  style="margin-right:20px;" required auto-validate>
-    <iron-icon icon="mail" prefix></iron-icon>
-  </paper-input>
-  <paper-input label="Password" type="password" required auto-validate>
-    <iron-icon icon="lock" prefix></iron-icon>
-  </paper-input>
-</paper-toolbar>
-<!-- Nav end -->
+            <a href="#section1bg" class="link" tabindex="-1">
+              <paper-icon-button icon="home"></paper-icon-button>TAB ONE
+            </a>
+          </paper-tab>
+          <paper-tab link>
+            <a href="#link2" class="link" tabindex="-1">TAB TWO</a>
+          </paper-tab>
+          <paper-tab link>
+            <a href="#link3" class="link" tabindex="-1">TAB THREE</a>
+          </paper-tab>
+           <paper-tab link>
+            <a href="#link3" class="link" tabindex="-1">TAB FOUR</a>
+          </paper-tab>
+           <paper-tab link>
+            <a href="#link3" class="link" tabindex="-1">TAB FIVE</a>
+          </paper-tab>
+      </paper-tabs>
+      </app-toolbar>
+      </app-header>
 
-
-
-
-<!--Section container-->
-<div id="section_container fit">
-    <div id="section1bg" class="section section_img">
-      
-    </div>
-    <div id="section2bg" class="section section_img">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-6 col-md-6 col-lg-6">
-                <h2>Get our app</h2>
-            </div>  
-            <div class="col-md-6 col-lg-6">
-                <h2>Get our app</h2>
-            </div>  
-        </div>  
-        </div>
-    </div>
-   <div id="section5bg" class="section section_img">
-     
-    </div>  
-</div>
-
-<footer>
-<p class="center-text">Copyright  <a href="http://docs.feathersjs.com" alt="Feathers Documentation" target="blank">Seatfilla.com</a></p>
- </footer>
-
-<!-- Section container end -->
-</paper-header-panel>
-
+      <app-box class="merge" effects="parallax-background">
+       <!--Section container-->
+            <div id="section_container">
+                <div  class="header section_img">
+                  <video autoplay id="myVideo" style="min-height:100vh;">
+                    <source src="vid/opener.mov" type="video/mp4"/>
+                  </video>
+                  <div class="container80">         
+                  <form is="iron-form" id="redirectDemo" style="float:right;right:0px;top:10px;width:300px;padding:30px;background-color:white;width:400px;border-radius:5px;opacity:0.9;">
+                    <p style="color:black;">Sign up</h2>
+                  <paper-input name="name" label="Username" required></paper-input>
+                  <paper-input name="password" label="Password" type="password" required></paper-input>
+                  <paper-button style="background-color:orange;width:100%;" raised onclick="_nativeSubmit(event)">Submit</paper-button>
+                </form>
+                </div>           
+                </div>
+                <div id="section2bg" class="section section_img">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-xl-3 col-md-4 col-lg-4">
+                 
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h2>1. Sign up</h2>
+                                  </div>
+                                  <div class="panel panel-content">
+                                    <p>content</p>
+                                    </div>
+                            </div>  
+                        </div>  
+                        <div class="col-md-4 col-lg-4">
+                        <h2>2. Start bidding</h2>
+                        </div>  
+                           <div class="col-md-4 col-lg-4">
+                         <h2>3. Await response</h2>
+                        </div>  
+                    </div>  
+                    </div>
+                </div>
+              <div id="section5bg" class="section section_img">
+              </div>  
+            </div>
+            <footer>
+            <p class="center-text">Copyright  <a href="http://docs.feathersjs.com" alt="Feathers Documentation" target="blank">Seatfilla.com</a></p>
+            </footer>
+ </app-box>
+    </app-header-layout>
+</app-drawer-layout>
 </body>
 </html>
