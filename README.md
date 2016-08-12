@@ -2,7 +2,6 @@
 
 > SeatFilla website by Dale/Richard
 
-
 ## SeatFilla
 SeatFilla Information here
 
@@ -64,11 +63,48 @@ For more information on all the things you can do with Feathers visit [docs.feat
 
 __0.1.0__
 
+- Project proposal handed in
 - /05/08/16 - Project creation, built dependencies and scaffolding, installed Node.js and npm.
 - /05/08/15 - Set up basic project structure and configurations, connection to PostgresSQL db.
 - /06/08/15 - Added polymer library component support
-- /06/08/15 - Start developing UI prototypes 
+- /06/08/15 - UI Prototypes added, assets obtained although still looking
+- /07/08/15 - Research into feathers/node.js/socket IO/express js
+- /08/08/15 - Research continued
+- /09/08/15 - Research continued
+- /09/08/15 - Added bootstrap support
+- /10/08/15 - User interface design begins
 
+__0.1.1__
+
+
+- /07/08/15 - Created /Interest service
+              
+
+## Todo:
+
+Create /Interest service:
+       - Authenticate (API token)
+       - Create an interest (Authentication token) --> push to suppliers
+       - Remove an interest (Authentication token) --> remove from suppliers
+       - Register web hook
+       - Find all interests
+       - Find specific interest
+       - Accept an interest (validate api token)
+    
+Create /Supplier service 
+       - Authenticate (API token)
+       - Push flight/details  --> push to clients  <req same API token e.g store in db with API token>
+       - Remove flight/details --> push to client <req same API token>
+       - Find currently supplied flights ---> <req API token>
+
+ create /Statistics service
+        - Type required? 
+        - Get all in one req?      
+
+
+
+Create user interface /Interest
+Create user interface /Supplier /Statistics
 ## License
 
 Copyright (c) 2016
