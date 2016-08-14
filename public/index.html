@@ -1,249 +1,822 @@
 <!-- Seatfilla V0.01 Capstone project developed by Dale/Richard -->
 <html>
-  <head>
-    <title>SeatFilla</title>
-    <meta charset="UTF-8">
-    <meta name="description" content="Find cheap flight tickets online">
-    <meta name="keywords" content="Airline,airport,cheap,flight,tracking,delay,seats,ticket,online,purchase,API,fly">
-    <meta name="author" content="SeatFilla">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Jquery -->
-   <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<head>
+  <title>SeatFilla</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Find cheap flight tickets online">
+  <meta name="keywords" content="Airline,airport,cheap,flight,tracking,delay,seats,ticket,online,purchase,API,fly">
+  <meta name="author" content="SeatFilla">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Anonymous+Pro" />
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Michroma' type='text/css' />
 
-    <!-- Bootstrap js -->
-   <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-    <!-- Polymer platform js -->
-   <script src="./bower_components/platform/platform.js"></script>
+  <!-- Jquery -->
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
 
-    <!-- Web components -->
-   <script src="./bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <!-- Bootstrap js -->
+  <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Elements -->
-    <link rel="import" href="./bower_components/polymer/polymer.html">
-    <link rel="import" href="./bower_components/paper-header-panel/paper-header-panel.html">
-    <link rel="import" href="./bower_components/paper-input/paper-input.html">
-    <link rel="import" href="./bower_components/paper-toolbar/paper-toolbar.html">
-    <link rel="import" href="./bower_components/iron-icons/iron-icons.html">
-    <link rel="import" href="./bower_components/paper-button/paper-button.html">
-    <link rel="import" href="./bower_components/paper-icon-button/paper-icon-button.html">
-    <link rel="import" href="./bower_components/paper-menu/paper-menu.html">
-    <link rel="import" href="./bower_components/paper-styles/paper-styles.html">
-    <link rel="import" href="./bower_components/app-layout/app-layout.html">
-    <link rel="import" href="./bower_components/paper-tabs/paper-tabs.html">
-    <link rel="import" href="./bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-    <link rel="import" href="./bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
-    <link rel="import" href="./bower_components/iron-pages/iron-pages.html">
-    <link rel="import" href="./bower_components/iron-form-element-behavior/iron-form-element-behavior.html">
-    <link rel="import" href="./bower_components/iron-form/iron-form.html">
-    <link rel="import" href="./bower_components/paper-button/paper-button.html">
+  <!-- Polymer platform js -->
+  <script src="./bower_components/platform/platform.js"></script>
 
-    <!-- Css -->
-    <link rel = "stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel = "stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap-theme.css">
-    <link rel="stylesheet" type="text/css" href="./css/main.css">
-    
+  <!-- Web components -->
+  <script src="./bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+  <!-- Elements -->
+  <link rel="import" href="./bower_components/polymer/polymer.html">
+  <link rel="import" href="./bower_components/paper-header-panel/paper-header-panel.html">
+  <link rel="import" href="./bower_components/paper-input/paper-input.html">
+  <link rel="import" href="./bower_components/paper-toolbar/paper-toolbar.html">
+  <link rel="import" href="./bower_components/iron-icons/iron-icons.html">
+  <link rel="import" href="./bower_components/paper-button/paper-button.html">
+  <link rel="import" href="./bower_components/paper-icon-button/paper-icon-button.html">
+  <link rel="import" href="./bower_components/paper-menu/paper-menu.html">
+  <link rel="import" href="./bower_components/paper-styles/paper-styles.html">
+  <link rel="import" href="./bower_components/app-layout/app-layout.html">
+  <link rel="import" href="./bower_components/paper-tabs/paper-tabs.html">
+  <link rel="import" href="./bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+  <link rel="import" href="./bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
+  <link rel="import" href="./bower_components/iron-pages/iron-pages.html">
+  <link rel="import" href="./bower_components/iron-form-element-behavior/iron-form-element-behavior.html">
+  <link rel="import" href="./bower_components/iron-form/iron-form.html">
+  <link rel="import" href="./bower_components/paper-button/paper-button.html">
+
+  <!-- Css -->
+  <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="./css/main.css">
 
 
   <style is="custom-style">
+
+    /*Polymer compnents*/
+    app-header {
+      background-color: white;
+      color: black;
+      max-height: 40px;
+    }
     
-      app-header {
-       background-color: #232323;
-       color:white;
-       max-height:40px;
-      }
+    paper-tabs {
+      background-color: white;
+      width:50vw;
+      background-color:white;
+      position:absolute;
+      right:0px;top:0px;
+      padding:10px;
+      font-size:10px;
+      font-family: 'verdana';
+      max-height:40px;
+    }
+    
+    .link {
+      color: black;
+      font-size: 1em;
+      font-weight: bold;
+      @apply(--layout-horizontal);
+      @apply(--layout-center-center);
+    }
 
-      paper-tabs{
-        background-color:white;
-      }
+    .link:hover{
+      color:orange;
+    }
 
-      .link {
-        color:white;
-        font-size:1em;
-        font-weight:bold;
-        @apply(--layout-horizontal);
-        @apply(--layout-center-center);
-      }
+    /*All polymer elements*/
+    :root {
+      /* Label and underline color when the input is not focused */
+      --paper-input-container-color: black;
+      /* Label and underline color when the input is focused */
+      --paper-input-container-focus-color: black;
+      /* Label and underline color when the input is invalid */
+      --paper-input-container-invalid-color: red;
+      /* Input foreground color */
+      --paper-input-container-input-color: black;
+    }
 
-      :root {
-        /* Label and underline color when the input is not focused */
-        --paper-input-container-color: black;
+    /*End polymer compnents*/
 
-        /* Label and underline color when the input is focused */
-        --paper-input-container-focus-color: black;
+    /* 
+      Section
+    */
+    .section {
+      position: relative;
+      min-height: 100vh;
+      min-width: 100vw;
+      color: #fff;
+      display: flex;
+      overflow-x: hidden;
+      display:flex;
+    }
 
-        /* Label and underline color when the input is invalid */
-        --paper-input-container-invalid-color: red;
+    .section-full{
+       min-height: 100vh;
+    }
 
-        /* Input foreground color */
-        --paper-input-container-input-color: black;
-}
-   </style>
+    .section-half{
+      min-height: 50vh;
+      max-height: 50vh;
+    }
 
-    <style>
-  
-  .section{
-    position:relative;
-    min-height:100vh;
-    min-width:100vw;
-    color: #fff;
-    display:flex;
-    overflow-x:hidden;
-  }
+    .section-third{
+      min-height: 33vh;
+      max-height: 33vh;
+    }
 
-  .header{
-    position:relative;
-    min-height:80vh;
-    height:80vh;
-    max-height:80vh;
-    color: #fff;
-    display:flex;
-    -webkit-box-shadow: 1px 2px 4px 0px rgba(18,18,18,1);
-    -moz-box-shadow: 1px 2px 4px 0px rgba(18,18,18,1);
-    box-shadow: 1px 2px 4px 0px rgba(18,18,18,1);
-  }
+    .section-fourth{
+      min-height: 25vh;
+      max-height: 25vh;
+    }
 
-  .phone{
-    position:relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index:1;
-  }
+     .section-60{
+      min-height: 60vh;
+      max-height: 60vh;
+    }
+    
+    .header {
+      position: relative;
+      display: flex;
+      -webkit-box-shadow: 1px 2px 4px 0px rgba(18, 18, 18, 1);
+      -moz-box-shadow: 1px 2px 4px 0px rgba(18, 18, 18, 1);
+      box-shadow: 1px 2px 4px 0px rgba(18, 18, 18, 1);
+    }
 
-  #vid_intro{
-    width:100vw;
-    height:102vh;
-  }
-
-  .phone img{
-    width:20vw;
-    height:80vh;
-  }
-
-  nav{
-    background-color:white;
-  }
-
-  nav a{
-    color:black;
-  }
-
-  footer{
-    position:relative;
-    top:10px;
-  }
-
-  .section_img{
-      background-repeat:no-repeat;
+    section{
+      padding:50px;
+      overflow:hidden;
+    }
+    
+    .section_img {
+      background-repeat: no-repeat;
       background-size: 100% 100%;
       background-position: center center;
-  }
-
-  #section1bg { 
-      background-image:url('img/globe.jpeg');
-      
-  }
-
-  #section2bg {       
+    }
+    
+    #section1bg {
+      background-image: url('img/globe.jpeg');
+    }
+    
+    #section2bg { 
      
-  } 
+    }
+    
+    #section3bg {
+      background-color:#c9c9c9;
+      /*#232323*/
+    }
+    
+    #section4bg {
 
-  #section3bg {     
-  
-  }
+    }
+    
+    #section5bg {
+      background-color: lightgrey;
+    }
+    
+    #section_container {
+      width: 100%;
+      overflow-x: hidden;
+      margin: auto;
+    }
 
-  #section4bg {     
 
-  }
+    /*
+    General
+    */
+    .inline {
+      display: inline-block;
+    }
 
-  #section5bg { background-color:lightgrey;}
+    .scrollable {
+      overflow: scroll;
+    }
+    
+    .left {
+      float: left;
+    }
+    
+    .right {
+      float: right;
+    }
 
-  .inline{display:inline-block;}
+    .center{
+      position:static;
+      margin:auto;
+    }
+    
+    .easing {}
 
-  #section_container{
-    width:100%;
-    overflow-x:hidden;
-    margin:auto; 
-  }
-
-  .logo{position:relative;}
-  .logo img{
-    position:relative;
-    bottom:10px;
-  }
-
-  .scrollable{
-    overflow:scroll;
-  }
-
-  .left{
-    float:left;
-  }
-
-  .right{
-    float:right;
-  }
-
-  .easing{
-      -webkit-transition: all 0.7s ease-out;
+    .easing:hover{
+        -webkit-transition: all 0.7s ease-out;
       -moz-transition: all 0.7s ease-out;
       -o-transition: all 0.7s ease-out;
       transition: all 0.7s ease-out;
-  }
+    }
 
-  #myCarousel{
-    width:100%;
-    height:100%;
-    top:30px;
-  }
+    .text-white{
+      color:white;
+    }
 
-  .container80{
-    width:80%;
-    margin:auto;
-  }
+    .text-black{
+      color:black;
+    }
 
-  .rel{
-    position:relative;
-  }
+    .text-large{
+      font-size:2em;
+    }
 
-  rel-right{
-    right:0px;
-  }
+    .text-extra-large{
+      font-size:3em;
+    }
 
-  .cover{
-    color:lightgrey;
-  }
 
-  footer{
-    background-color:#ffa200;
-  }
+    .container80 {
+      width: 80%;
+      margin: auto;
+      overflow:hidden;
+    }
+   
+    .text-center{
+      text-align:center;
+    }
 
-  .merge{
-    style="position:relative;bottom:40px;"
-  }
+    .colorgraph {
+      height: 5px;
+      border-top: 0;
+      background: #c4e17f;
+      border-radius: 5px;
+      background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+      background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+      background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+      background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    }
 
-  .title{
-    font-size:1em;
-    letter-spacing:2px;
-    position:absolute;
-    bottom:10px;
-    left:60px;
-    color:white;
-  }
 
+    .slighty-padded{
+        padding:10px;
+    }
+
+    .form-control { margin-bottom: 10px; }
+
+
+    /*Site title*/
+    .title {
+      font-size: 1em;
+      letter-spacing: 2px;
+      position: absolute;
+      bottom: 10px;
+      left: 60px;
+      color: black;
+    }
+
+        
+    .center-block{
+      position: absolute;
+      left: 50%;
+      width:280px;
+      height:550px;
+      transform: translate(-50%, -50%);
+      top:50%;
+    }
+    
+    /*
+      Footer
+    */
+    .full {
+    width: 100%;	
+    }
+
+    .gap {
+      height: 30px;
+      width: 100%;
+      clear: both;
+      display: block;
+    }
+    .footer {
+      padding:0px;
+      margin:0px;
+      height: auto;
+      padding-bottom: 30px;
+      position: relative;
+      width: 100vw;
+
+    }
+    .footer p {
+      margin: 0;
+    }
+    .footer img {
+      max-width: 100%;
+    }
+    .footer h3 {
+      border-bottom: 1px solid #FFF;
+      color: #54697E;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 27px;
+      padding: 40px 0 10px;
+      text-transform: uppercase;
+    }
+    .footer ul {
+      font-size: 13px;
+      list-style-type: none;
+      margin-left: 0;
+      padding-left: 0;
+      margin-top: 15px;
+      color: #7F8C8D;
+    }
+    .footer ul li a {
+      padding: 0 0 5px 0;
+      display: block;
+    }
+    .footer a {
+      color: orange;
+    }
+    .supportLi h4 {
+      font-size: 20px;
+      font-weight: lighter;
+      line-height: normal;
+      margin-bottom: 0 !important;
+      padding-bottom: 0;
+    }
+    .newsletter-box input#appendedInputButton {
+      background: #FFFFFF;
+      display: inline-block;
+      float: left;
+      height: 30px;
+      clear: both;
+      width: 100%;
+    }
+    .newsletter-box .btn {
+      border: medium none;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -o-border-radius: 3px;
+      -ms-border-radius: 3px;
+      border-radius: 3px;
+      display: inline-block;
+      height: 40px;
+      padding: 0;
+      width: 100%;
+      color: #fff;
+    }
+    .newsletter-box {
+      overflow: hidden;
+    }
+
+    .social li {
+      background: none repeat scroll 0 0 #B5B5B5;
+      border: 2px solid #B5B5B5;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -o-border-radius: 50%;
+      -ms-border-radius: 50%;
+      border-radius: 50%;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+      margin: 0 8px 0 0;
+      padding: 0;
+      text-align: center;
+      width: 36px;
+      transition: all 0.5s ease 0s;
+      -moz-transition: all 0.5s ease 0s;
+      -webkit-transition: all 0.5s ease 0s;
+      -ms-transition: all 0.5s ease 0s;
+      -o-transition: all 0.5s ease 0s;
+    }
+    .social li:hover {
+      transform: scale(1.15) rotate(360deg);
+      -webkit-transform: scale(1.1) rotate(360deg);
+      -moz-transform: scale(1.1) rotate(360deg);
+      -ms-transform: scale(1.1) rotate(360deg);
+      -o-transform: scale(1.1) rotate(360deg);
+    }
+    .social li a {
+      color: #EDEFF1;
+    }
+    .social li:hover {
+      border: 2px solid #2c3e50;
+      background: #2c3e50;
+    }
+    .social li a i {
+      font-size: 16px;
+      margin: 0 0 0 5px;
+      color: #EDEFF1 !important;
+    }
+    .footer-bottom {
+      border-top: 1px solid #DDDDDD;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .footer-bottom p.pull-left {
+      padding-top: 6px;
+    }
+    .payments {
+      font-size: 1.5em;	
+    }
+    /*	--------------------------------------------------
+      :: Table Filter
+      -------------------------------------------------- */
+    .panel {
+      border: 1px solid #ddd;
+      background-color: #fcfcfc;
+    }
+    .panel .btn-group {
+      margin: 15px 0 30px;
+    }
+    .panel .btn-group .btn {
+      transition: background-color .3s ease;
+    }
+    .table-filter {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+    }
+    .table-filter tbody tr:hover {
+      cursor: pointer;
+      background-color: #eee;
+    }
+    .table-filter tbody tr td {
+      padding: 10px;
+      vertical-align: middle;
+      border-top-color: #eee;
+    }
+    .table-filter tbody tr.selected td {
+      background-color: #eee;
+    }
+    .table-filter tr td:first-child {
+      width: 38px;
+    }
+    .table-filter tr td:nth-child(2) {
+      width: 35px;
+    }
+    .ckbox {
+      position: relative;
+    }
+    .ckbox input[type="checkbox"] {
+      opacity: 0;
+    }
+    .ckbox label {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .ckbox label:before {
+      content: '';
+      top: 1px;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      display: block;
+      position: absolute;
+      border-radius: 2px;
+      border: 1px solid #bbb;
+      background-color: #fff;
+    }
+    .ckbox input[type="checkbox"]:checked + label:before {
+      border-color: #2BBCDE;
+      background-color: #2BBCDE;
+    }
+    .ckbox input[type="checkbox"]:checked + label:after {
+      top: 3px;
+      left: 3.5px;
+      content: '\e013';
+      color: #fff;
+      font-size: 11px;
+      font-family: 'Glyphicons Halflings';
+      position: absolute;
+    }
+    .table-filter .star {
+      color: #ccc;
+      text-align: center;
+      display: block;
+    }
+    .table-filter .star.star-checked {
+      color: #F0AD4E;
+    }
+    .table-filter .star:hover {
+      color: #ccc;
+    }
+    .table-filter .star.star-checked:hover {
+      color: #F0AD4E;
+    }
+    .table-filter .media-photo {
+      width: 35px;
+    }
+    .table-filter .media-body {
+        display: block;
+    }
+    .table-filter .media-meta {
+      font-size: 11px;
+      color: #999;
+    }
+    .table-filter .media .title {
+      color: #2BBCDE;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: normal;
+      margin: 0;
+    }
+    .table-filter .media .title span {
+      font-size: .8em;
+      margin-right: 20px;
+    }
+    .table-filter .media .title span.pagado {
+      color: #5cb85c;
+    }
+    .table-filter .media .title span.pendiente {
+      color: #f0ad4e;
+    }
+    .table-filter .media .title span.cancelado {
+      color: #d9534f;
+    }
+    .table-filter .media .summary {
+      font-size: 14px;
+    }
+
+    /*
+      Wizard start
+    */
+    .wizard {
+       
+        background: #fff;
+    }
+
+    .wizard .nav-tabs {
+            position: relative;
+           
+      
+            border-bottom-color: #e0e0e0;
+    }
+
+    .wizard > div.wizard-inner {
+            position: relative;
+    }
+
+    .connecting-line {
+        height: 2px;
+        background: #e0e0e0;
+        position: absolute;
+        width: 80%;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 50%;
+        z-index: 1;
+    }
+
+    .wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+        color: #555555;
+        cursor: default;
+        border: 0;
+        border-bottom-color: transparent;
+    }
+
+    span.round-tab {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        display: inline-block;
+        border-radius: 100px;
+        background: #fff;
+        border: 2px solid #e0e0e0;
+        z-index: 2;
+        position: absolute;
+        left: 0;
+        text-align: center;
+        font-size: 25px;
+    }
+    span.round-tab i{
+        color:#555555;
+    }
+    .wizard li.active span.round-tab {
+        background: #fff;
+        border: 2px solid #5bc0de;
+        
+    }
+    .wizard li.active span.round-tab i{
+        color: #5bc0de;
+    }
+
+    span.round-tab:hover {
+        color: #333;
+        border: 2px solid #333;
+    }
+
+    .wizard .nav-tabs > li {
+        width: 25%;
+    }
+
+    .wizard li:after {
+        content: " ";
+        position: absolute;
+        left: 46%;
+        opacity: 0;
+        margin: 0 auto;
+        bottom: 0px;
+        border: 5px solid transparent;
+        border-bottom-color: #5bc0de;
+        transition: 0.1s ease-in-out;
+    }
+
+    .wizard li.active:after {
+        content: " ";
+        position: absolute;
+        left: 46%;
+        opacity: 1;
+        margin: 0 auto;
+        bottom: 0px;
+        border: 10px solid transparent;
+        border-bottom-color: #5bc0de;
+    }
+
+    .wizard .nav-tabs > li a {
+        width: 70px;
+        height: 70px;
+        margin: 20px auto;
+        border-radius: 100%;
+        padding: 0;
+    }
+
+        .wizard .nav-tabs > li a:hover {
+            background: transparent;
+        }
+
+    .wizard .tab-pane {
+        position: relative;
+        padding-top: 50px;
+    }
+
+    .wizard h3 {
+        margin-top: 0;
+    }
+
+    @media( max-width : 585px ) {
+
+        .wizard {
+            width: 90%;
+            height: auto !important;
+        }
+
+        span.round-tab {
+            font-size: 16px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .wizard .nav-tabs > li a {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .wizard li.active:after {
+            content: " ";
+            position: absolute;
+            left: 35%;
+        }
+      }
+
+
+      /*Login box*/
+      .panel-login {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+	color: #029f5b;
+	font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+	height: 45px;
+	border: 1px solid #ddd;
+	font-size: 16px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+	outline:none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: #ccc;
+}
+.btn-login {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
+}
+.forgot-password {
+	text-decoration: underline;
+	color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+	text-decoration: underline;
+	color: #666;
+}
+
+.btn-register {
+	background-color: #1CB94E;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+	color: #fff;
+	background-color: #1CA347;
+	border-color: #1CA347;
+}
+
+.box {
+  background:#fff;
+  transition:all 0.2s ease;
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-clip: padding-box;
+  padding:0 20px 20px 20px;
+  max-height:300px;
+  overflow:hidden;
+}
+
+.box:hover {
+  border:2px solid #525C7A;
+}
+
+.box span.box-title {
+    color: #fff;
+    font-size: 10px;
+  
+    text-transform: uppercase;
+}
+
+.box .box-content {
+  padding: 16px;
+  border-radius: 0 0 2px 2px;
+  background-clip: padding-box;
+  box-sizing: border-box;
+}
+.box .box-content p {
+  color:#515c66;
+  text-transform:none;
+}
+  
   </style>
 
   <script>
-
-    function menuAction(){
-      console.log('hello world');
-    }
-
-  $(document).ready(function () {
+       $(document).ready(function () {
 
      var debug = true;
+
      var replaceVideo = () =>{
         $('#myVideo').remove();
         $('.header').attr('id','section1bg').fadeIn(500);
@@ -261,98 +834,592 @@
             replaceVideo();
         });
     },false);
-  });
+    });
 
+     $('#login-form-link').click(function(e) {
+        $("#login-form").delay(100).fadeIn(100);
+        $("#register-form").fadeOut(100);
+        $('#register-form-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
+      });
+      $('#register-form-link').click(function(e) {
+        $("#register-form").delay(100).fadeIn(100);
+        $("#login-form").fadeOut(100);
+        $('#login-form-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
+      });
+   </script>
 
-    </script>
-  </head>
+</head>
 <body class="fullbleed layout vertical">
-<app-drawer-layout force-narrow fullbleed>
+  <app-drawer-layout force-narrow fullbleed>
     <app-drawer id="drawer" opened>
       <app-toolbar>
-        <h2>Navigation</h2>
+      <h2>Navigation</h2>
       </app-toolbar>
-
       <paper-menu selected="{{selected}}" attr-for-selected="name">
         <paper-item name="item">name</paper-item>
       </paper-menu>
     </app-drawer>
-    <app-header-layout fullbleed>
-
+       <app-header-layout fullbleed>
       <app-header class="main-header" fixed effects="waterfall">
         <app-toolbar>
-          <paper-icon-button style="position:absolute;top:0px;"icon="menu" drawer-toggle></paper-icon-button>
-          <h2 class="title" >SeatFilla</h2>
-          <paper-tabs style="width:50vw;background-color:#232323;float:right;position:absolute;right:0px;top:0px;padding:10px;font-size:10px;max-height:40px;" selected="{{selected}}">
-          <paper-tab link>
-
-            <a href="#section1bg" class="link" tabindex="-1">
-              <paper-icon-button icon="home"></paper-icon-button>TAB ONE
-            </a>
-          </paper-tab>
-          <paper-tab link>
-            <a href="#link2" class="link" tabindex="-1">TAB TWO</a>
-          </paper-tab>
-          <paper-tab link>
-            <a href="#link3" class="link" tabindex="-1">TAB THREE</a>
-          </paper-tab>
-           <paper-tab link>
-            <a href="#link3" class="link" tabindex="-1">TAB FOUR</a>
-          </paper-tab>
-           <paper-tab link>
-            <a href="#link3" class="link" tabindex="-1">TAB FIVE</a>
-          </paper-tab>
-      </paper-tabs>
-      </app-toolbar>
+          <nav>
+          <paper-icon-button style="position:absolute;top:0px;" icon="menu" drawer-toggle></paper-icon-button>
+          <h2 class="title">SeatFilla</h2>
+          <paper-tabs>
+            selected="{{selected}}">
+            <paper-tab link>
+              <a href="#section1bg" class="link" tabindex="-1">SIGN UP </a>
+            </paper-tab>
+            <paper-tab link>
+              <a href="#link2" class="link" tabindex="-1">ABOUT</a>
+            </paper-tab>
+            <paper-tab link>
+              <a href="#link3" class="link" tabindex="-1">APP</a>
+            </paper-tab>
+            <paper-tab link>
+              <a href="#link3" class="link" tabindex="-1">TAB FOUR</a>
+            </paper-tab>
+            <paper-tab link>
+              <a href="#link3" class="link" tabindex="-1">TAB FIVE</a>
+            </paper-tab>
+          </paper-tabs>
+           <paper-icon-button style="position:absolute;right:0px;top:0px;" icon="settings" drawer-toggle></paper-icon-button>
+          </nav>
+        </app-toolbar>
       </app-header>
-
       <app-box class="merge" effects="parallax-background">
-       <!--Section container-->
-            <div id="section_container">
-                <div  class="header section_img">
-                  <video autoplay id="myVideo" style="min-height:100vh;">
-                    <source src="vid/opener.mov" type="video/mp4"/>
-                  </video>
-                  <div class="container80">         
-                  <form is="iron-form" id="redirectDemo" style="float:right;right:0px;top:10px;width:300px;padding:30px;background-color:white;width:400px;border-radius:5px;opacity:0.9;">
-                    <p style="color:black;">Sign up</h2>
-                  <paper-input name="name" label="Username" required></paper-input>
-                  <paper-input name="password" label="Password" type="password" required></paper-input>
-                  <paper-button style="background-color:orange;width:100%;" raised onclick="_nativeSubmit(event)">Submit</paper-button>
-                </form>
-                </div>           
-                </div>
-                <div id="section2bg" class="section section_img">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-xl-3 col-md-4 col-lg-4">
-                 
-                            <div class="panel panel-info">
-                                <div class="panel-heading">
-                                    <h2>1. Sign up</h2>
-                                  </div>
-                                  <div class="panel panel-content">
-                                    <p>content</p>
-                                    </div>
-                            </div>  
-                        </div>  
-                        <div class="col-md-4 col-lg-4">
-                        <h2>2. Start bidding</h2>
-                        </div>  
-                           <div class="col-md-4 col-lg-4">
-                         <h2>3. Await response</h2>
-                        </div>  
-                    </div>  
+        <div id="section_container">
+          <section id="section1bg" class="header section_img section-60">
+            <div class="container80">
+              <div class="row">
+              <div class="col-md-7">
+              <h2 style="color:white;font-size:3em;color:white;position:relative;top:20px;">SeatFilla<div class="lead" style="color:white">GET WHERE YOU NEED TO GO</div></h2>
+              </div>
+              <div class="col-md-5">
+       
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+								<form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>	
+		      </div>
+        	</div>
+              </div>
+            </div>
+          </div>
+          </section>
+          
+          <section>
+            <div class="container">
+
+	<div class="row">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div class="box">
+                        <div class="box-content">
+                            <h1 class="tag-title">Heading</h1>
+                            <hr />
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pharetra quam sollicitudin nibh aliquam finibus. Etiam efficitur felis vel imperdiet varius. Maecenas bibendum elementum molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris cursus finibus semper. Fusce molestie tincidunt leo vel varius. Nam scelerisque nulla feugiat leo consequat, id dignissim sem tincidunt. Proin elit mauris, hendrerit in varius sed, facilisis sit amet neque.</p>
+                            <br />
+                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
+                        </div>
                     </div>
                 </div>
-              <div id="section5bg" class="section section_img">
-              </div>  
+                <div class="col-md-4 text-center">
+                    <div class="box">
+                        <div class="box-content">
+                            <h1 class="tag-title">Heading</h1>
+                            <hr />
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pharetra quam sollicitudin nibh aliquam finibus. Etiam efficitur felis vel imperdiet varius. Maecenas bibendum elementum molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris cursus finibus semper. Fusce molestie tincidunt leo vel varius. Nam scelerisque nulla feugiat leo consequat, id dignissim sem tincidunt. Proin elit mauris, hendrerit in varius sed, facilisis sit amet neque.</p>
+                            <br />
+                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="box">
+                        <div class="box-content">
+                            <h1 class="tag-title">Heading</h1>
+                            <hr />
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pharetra quam sollicitudin nibh aliquam finibus. Etiam efficitur felis vel imperdiet varius. Maecenas bibendum elementum molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris cursus finibus semper. Fusce molestie tincidunt leo vel varius. Nam scelerisque nulla feugiat leo consequat, id dignissim sem tincidunt. Proin elit mauris, hendrerit in varius sed, facilisis sit amet neque.</p>
+                            <br />
+                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+              <div class="center-row">
+                <div class="col-sm-7 col-md-7">
+                <header>
+                  <h2 class="text-center">Getting started</h2>
+                </header>
+               	<div class="row">
+		      <section>
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                            <span class="round-tab">
+                                1
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                            <span class="round-tab">
+                                2
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                            <span class="round-tab">
+                                3
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <footer>
-            <p class="center-text">Copyright  <a href="http://docs.feathersjs.com" alt="Feathers Documentation" target="blank">Seatfilla.com</a></p>
-            </footer>
- </app-box>
+
+            <form role="form">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                        <h3>Step 1</h3>
+                       <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-globe"></i></a> Enter your details</legend>
+            <form action="#" method="post" class="form" role="form">
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <input class="form-control" name="firstname" placeholder="First Name" type="text"
+                        required autofocus />
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <input class="form-control" name="lastname" placeholder="Last Name" type="text" required />
+                </div>
+            </div>
+            <input class="form-control" name="youremail" placeholder="Your Email" type="email" />
+            <input class="form-control" name="reenteremail" placeholder="Re-enter Email" type="email" />
+            <input class="form-control" name="password" placeholder="New Password" type="password" />
+            <label for="">
+                Birth Date</label>
+            <div class="row">
+                <div class="col-xs-4 col-md-4">
+                    <select class="form-control">
+                        <option value="Month">Month</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <select class="form-control">
+                        <option value="Day">Day</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <select class="form-control">
+                        <option value="Year">Year</option>
+                    </select>
+                </div>
+            </div>
+            <label class="radio-inline">
+                <input type="radio" name="sex" id="inlineCheckbox1" value="male" />
+                Male
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="sex" id="inlineCheckbox2" value="female" />
+                Female
+            </label>
+            <br />
+            <br />
+            </form>
+        </div>
+    </div>
+</div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                        <h3>Step 2</h3>
+                        <p>This is step 2</p>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step3">
+                        <h3>Step 3</h3>
+                        <p>This is step 3</p>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="complete">
+                        <h3>Complete</h3>
+                        <p>You have successfully completed all steps.</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+   </div>
+</div>
+
+                </div> 
+               
+               
+          <!--Latest bids-->
+          <div class="col-sm-5 col-md-5">
+                 <header>
+                <h2 class="text-center">Latest bids</h2>
+              </header>
+          <aside>
+          <div class="row">
+            <section class="content">
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+									<tr data-status="pagado">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox1">
+												<label for="checkbox1"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+																								<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo img-circle img-responsive">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right pagado">(Pagado)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr data-status="pendiente">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox3">
+												<label for="checkbox3"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo img-circle img-responsive">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right pendiente">(Pendiente)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr data-status="cancelado">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox2">
+												<label for="checkbox2"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+																		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo img-circle img-responsive">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right cancelado">(Cancelado)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr data-status="pagado" class="selected">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox4" checked>
+												<label for="checkbox4"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star star-checked">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo img-circle img-responsive">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right pagado">(Pagado)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr data-status="pendiente">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox5">
+												<label for="checkbox5"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+																									<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo img-circle img-responsive">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right pendiente">(Pendiente)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+            </section>
+            </div>
+           </aside>
+           </div>
+          </section>
+          <section id="section3bg" class="section section_img">
+                <section class="container80">
+
+                </section>
+          </section>
+          <section id="section2bg" class="section section_img">
+   
+            <section class="container">
+              <h2>Multiple Devices</h1>
+              <aside class="left" style="position:absolute;top:30%;">
+                <h2>Try our app</h2>
+                <ul>
+                  <li>Instant bidding</li>
+                   <li>Instant bidding</li>
+                    <li>Instant bidding</li>
+                </ul>
+              </aside>
+              <img src="img/white_iphone.png" class="center-block easing"/>
+              <aside class="right">
+                <h2>Available Now</h2>
+                <p>
+                  Try out our app available on both IOS/Android devices.
+                </p>
+              </aside> 
+            </div>
+          </section>
+        </div>
+   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<footer>
+    <div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Lorem Ipsum </h3>
+                    <ul>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Lorem Ipsum </h3>
+                    <ul>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Lorem Ipsum </h3>
+                    <ul>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Lorem Ipsum </h3>
+                    <ul>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Lorem Ipsum </h3>
+                    <ul>
+                        <li>
+                            <div class="input-append newsletter-box text-center">
+                                <input type="text" class="full text-center" placeholder="Email ">
+                                <button class="btn  bg-gray" type="button"> Lorem ipsum <i class="fa fa-long-arrow-right"> </i> </button>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.row--> 
+        </div>
+        <!--/.container--> 
+    </div>
+    <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="pull-left"> Copyright © Footer E-commerce Plugin 2014. All right reserved. </p>
+            <div class="pull-right">
+                <ul class="nav nav-pills payments">
+                	<li><i class="fa fa-cc-visa"></i></li>
+                    <li><i class="fa fa-cc-mastercard"></i></li>
+                    <li><i class="fa fa-cc-amex"></i></li>
+                    <li><i class="fa fa-cc-paypal"></i></li>
+                </ul> 
+            </div>
+        </div>
+    </div>
+    <!--/.footer-bottom--> 
+    </footer>
+
+      </app-box>
+      
     </app-header-layout>
-</app-drawer-layout>
+  </app-drawer-layout>
+  
 </body>
 </html>
