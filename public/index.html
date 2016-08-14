@@ -1,6 +1,5 @@
 <!-- Seatfilla V0.01 Capstone project developed by Dale/Richard -->
 <html>
-
 <head>
   <title>SeatFilla</title>
   <meta charset="UTF-8">
@@ -10,6 +9,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Anonymous+Pro" />
   <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Michroma' type='text/css' />
+
+  <!--Favicon-->
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
 
   <!-- Jquery -->
   <script src="./bower_components/jquery/dist/jquery.min.js"></script>
@@ -809,47 +827,50 @@
   color:#515c66;
   text-transform:none;
 }
+
+i{
+  padding:10px;
+}
   
   </style>
 
   <script>
        $(document).ready(function () {
+            var debug = true;
 
-     var debug = true;
+            var replaceVideo = () =>{
+                $('#myVideo').remove();
+                $('.header').attr('id','section1bg').fadeIn(500);
+                localStorage.setItem('intro_played',1);
+            }
 
-     var replaceVideo = () =>{
-        $('#myVideo').remove();
-        $('.header').attr('id','section1bg').fadeIn(500);
-        localStorage.setItem('intro_played',1);
-    }
+            if(debug || !localStorage.getItem('intro_played')){
+              $('video').get(0).play();
+            }else{
+              replaceVideo();
+            }
 
-    if(debug || !localStorage.getItem('intro_played')){
-      $('video').get(0).play();
-    }else{
-      replaceVideo();
-    }
+            document.getElementById('myVideo').addEventListener('ended',function(e) {
+                $('#myVideo').fadeOut(1000,function(){
+                    replaceVideo();
+                });
+            },false);
+            });
 
-    document.getElementById('myVideo').addEventListener('ended',function(e) {
-        $('#myVideo').fadeOut(1000,function(){
-            replaceVideo();
-        });
-    },false);
-    });
-
-     $('#login-form-link').click(function(e) {
-        $("#login-form").delay(100).fadeIn(100);
-        $("#register-form").fadeOut(100);
-        $('#register-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-      });
-      $('#register-form-link').click(function(e) {
-        $("#register-form").delay(100).fadeIn(100);
-        $("#login-form").fadeOut(100);
-        $('#login-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-      });
+            $('#login-form-link').click(function(e) {
+                $("#login-form").delay(100).fadeIn(100);
+                $("#register-form").fadeOut(100);
+                $('#register-form-link').removeClass('active');
+                $(this).addClass('active');
+                e.preventDefault();
+              });
+              $('#register-form-link').click(function(e) {
+                $("#register-form").delay(100).fadeIn(100);
+                $("#login-form").fadeOut(100);
+                $('#login-form-link').removeClass('active');
+                $(this).addClass('active');
+                e.preventDefault();
+            });
    </script>
 
 </head>
@@ -899,13 +920,13 @@
               <div class="col-md-7">
               <h2 style="color:white;font-size:3em;color:white;position:relative;top:20px;">SeatFilla<div class="lead" style="color:white">GET WHERE YOU NEED TO GO</div></h2>
               </div>
+
               <div class="col-md-5">
-       
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Login</a>
+								<a href="#" class="active" id="login-form-link">Login</a><i class="glyphicon glyphicon-log-in"></i>
 							</div>
 							<div class="col-xs-6">
 								<a href="#" id="register-form-link">Register</a>
@@ -1324,7 +1345,7 @@
                     <li>Instant bidding</li>
                 </ul>
               </aside>
-              <img src="img/white_iphone.png" class="center-block easing"/>
+              <img src="img/white_iphone.png" class="center-block img img-responsive easing"/>
               <aside class="right">
                 <h2>Available Now</h2>
                 <p>

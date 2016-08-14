@@ -82,29 +82,160 @@ __0.1.1__
 
 ## Todo:
 
-Create /Interest service:
-       - Authenticate (API token)
-       - Create an interest (Authentication token) --> push to suppliers
-       - Remove an interest (Authentication token) --> remove from suppliers
-       - Register web hook
-       - Find all interests
-       - Find specific interest
-       - Accept an interest (validate api token)
-    
-Create /Supplier service 
-       - Authenticate (API token)
-       - Push flight/details  --> push to clients  <req same API token e.g store in db with API token>
-       - Remove flight/details --> push to client <req same API token>
-       - Find currently supplied flights ---> <req API token>
+SeatFilla scope
 
- create /Statistics service
-        - Type required? 
-        - Get all in one req?      
+1.	Component based website using polymer/bootstrap/CSS/html5
+
+1.1 Website:
+
+-	View 3rd party supplied flights in real time (as they are pushed)
+-	Create flight requests
+-	Ability for suppliers to auction the flight or offer a flight for a fixed price
+-	Users can bid on auctioned flights in real time
+-	Latest bids on flights
+-	Latest bought flight routes
+-	Flight tracking/delay (updates a user if there’s any flight delays on an accepted flight)
+-	Template engine
+
+1.2 Control panel for customers:
+
+-	View active requests
+-	Cancel active requests
+-	View status of requests (whether they have been accepted)
+-	Confirm offers (that have been accepted)
+
+1.3 Suppliers interface (convenience, API can be used)
+
+-	View requests in real time
+-	Accept requests in real time
+-	View API documentation
+-	View charts based on API usage
+
+2.	Backend server in node.js/express.js/socket IO 
+
+3.	Local login system /Single sign on (Login via Facebook, Instagram, Twitter)
+
+4.	Authentication using JWT (API authentication tokens and login tokens)
+
+5.	Backend database (PostgreSQL or NoSQL tbc)
+
+6.	Payment system (Charge/Credit customers/3rd party suppliers)
+
+7.	Available on android/IOS through porting 
+
+8.	RESTful API (Details supplied below)
+
+Flight requests – Service no.1
+
+The service is responsible for creating a flight request to fly between a specific departure and arrival airport, between the specified date ranges, within certain predicates set by the requester.
+Registered users of SeatFilla will create these requests. 3rd party users of SeatFilla will be able to query created requests to find willing applicants for their flights. 
+
+Airlines and third party suppliers will then be able to find users interested flying between these destinations 
+
+Methods:
+
+GET SeatFilla.com/api/FlightRequest – Gets a flight request matching the specified criteria (TBD)
+
+An example request may look like:
+
+ (Note these are subject to change and just ideas of what a request may look like)
+
+‘Requests’: [
+}
+          ‘DepartureAirport’Code: ‘AKL’,
+          ‘ArrivalAirportCode’ : ’LAX’,
+          ‘RequestID’: ‘xxxx-xxxx-xxxx-xxxx’ (UUID)
+          ‘Applicant’: {
+		ApplicantID: ‘xxxx-xxxx-xxxx-xxxx’ (UUID)
+	 },
+	‘FromDate’:  ISO DATE,
+           ‘FromDateTo’: ISO DATE,
+	‘RequiresReturn’: True/False,
+	‘ReturnDate’: ISO DATE,
+	‘ReturnDateTo’: ISO DATE,
+	‘NoTicketsRequired’: INTEGER,
+	‘MaximumPayment’ :  INTEGER,
+	‘RequestTime’ : ISO DATE,
+	‘RequestDate’: ISO DATE
+}
+]
+
+POST SeatFilla.com/api/FlightRequest -  Creates a flight request (requires API token for creation)
+
+PUT SeatFilla.com/api/FlightRequest  - Update the specified request (with same API token that created the request)
+
+DELETE SeatFilla.com/api/FlightRequest – Deletes the specified request (with matching auth token)
 
 
+Extras:
 
-Create user interface /Interest
-Create user interface /Supplier /Statistics
+-	Create a hook on this service, update supplier interface in real time, notify web hook listeners.
+-	Allow registration of web hook on this service when a create or delete operation occurs.
+
+
+Flight Accept - Service no.2
+
+Methods:
+
+POST SeatFilla.com/api/FlightAccept
+
+3rd party suppliers making use of api/FlightRequest request will also be able to make use of api/FlightAccept in order to accept any user offers on flights.
+
+	[Requires verified authentication token]
+  	
+	{
+	     RequestID: (ID of the request being accepted)
+	     AuthToken: xxxx-xxxx-xxxx-xxxx
+      	     ExpirationDate: ISO DATE (expiration date of the offer)
+	     ExpirationTime: ISO TIME (expiration time of the offer)
+	     ‘ConfirmationURL’:
+	}
+
+(Here the flight requester has until expiration date and time to confirm payment for the flight, at which point his account will be charged and the 3rd party suppliers account credited)
+
+Extras:
+
+-	Web hook to notify 3rd party users of a confirmed/denied flight request
+-	Create hook to send user a notification, if they are online.     
+-	Create hook to email, txt and notify user of flight being accepted.
+-	Charge user who created the request a small fee
+
+
+Flight Offer (Auction/Fixed price) - Service no.3 
+
+(This is new and was not included in our project scope)
+
+The flight offer service will allow 3rd party suppliers to ‘offer’ flights to SeatFilla, and SeatFilla will display them in real time, seat filler will also use any requests it has received for flights as prime candidates for an offered flight and also display it via the website/app.
+
+If the offered flight is a fixed price it will be displayed on the SeatFilla website and users of SeatFilla will be able to purchase it directly.
+
+If the offered flight is auction, the 3rd party supplier provides a minimum selling point, it is listed on our site from that price and SeatFilla users can bid in real time on the the offered flight until the expiration date, at which point the user is charged.
+
+Methods:
+
+GET SeatFilla.com/api/FlightOffer – Retrieves all flight offers
+Search flight offer (between departure/arrival airport through the API)
+
+POST SeatFilla.com/api/FlightOffer - Create a flight offer (Auction/Fixed price) (Collect flight details, provider details) (Live update through web sockets)
+
+PUT SeatFilla.com/api/FlightOffer  - Update a flight offer
+
+DELETE SeatFilla.com/api/FlightOffer - Remove a flight offer (With API token that created the request)
+
+
+ Note: Create hook for create/remove from user interface
+
+Analytics - Service No.4
+
+Methods:
+
+GET Seatfilla.com/api/SeatFillaAnalytics 
+
+Obtain data/historical data from SeatFilla about purchase habits and flight popularity between certain dates/times
+
+
+Additional requests (Panel/Lecturers):
+
 ## License
 
 Copyright (c) 2016
